@@ -6,7 +6,7 @@ var CreateNote = require(__base + '/domain/usecases/createNote');
 
 // api/notes
 router.post('/', function(req, res) {
-  new CreateNote().onNote({"message" : req.body.message});
+  new CreateNote().onNewNote({"message" : req.body.message});
   //TODO: handle error case
   res.status(200).send();
 });

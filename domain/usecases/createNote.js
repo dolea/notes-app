@@ -1,11 +1,11 @@
 'use strict'
 
-class CreateNote {
+class NotesUseCase {
     constructor() {
         //TODO: inject collaborators
     }
 
-    onNote(note) {
+    onNewNote(note) {
         let DbNote = require(__base + '/note-repository/note');
         DbNote.create({
                 message : note.message,
@@ -17,4 +17,4 @@ class CreateNote {
     };
 }
 
-module.exports = CreateNote;
+module.exports = NotesUseCase;
