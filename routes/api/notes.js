@@ -18,8 +18,10 @@ router.post('/', function(req, res) {
 
 // api/notes
 router.get('/', function(req, res) {
-    //TODO: handle error case
-    useCase.findAllNotes().then(allNotes => res.status(200).send(allNotes));
+    useCase.findAllNotes()
+        .then(allNotes => res.status(200).send(allNotes))
+        //TODO: delegate this logic to the use case, most likely
+        .catch(error => res.status(500).send("An error occurred " + error));
 });
 
 module.exports = router;
