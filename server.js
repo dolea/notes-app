@@ -2,6 +2,7 @@
 var app = require('./app');
 var port = process.env.PORT || 3000;
 
-var server = app.listen(port, function() {
-  console.log('Express server listening on port ' + port);
-});
+// anything beginning with "/api" will go into this
+app.use('/api', require('./routes/api'));
+
+app.listen(3000);
