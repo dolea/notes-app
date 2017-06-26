@@ -4,14 +4,11 @@ let DbNote = require('./note');
 
 class NoteRepository {
 
-    createNewNote(note) {
-        DbNote.create({
-                message : note.message,
-            },
-            function (err, note) {
-                //TODO: return or handle
-                console.log(note);
-            });
+    async createNewNote(note) {
+        //TODO: mongoose promises are deprecated (http://mongoosejs.com/docs/promises.html)
+        const mongoNote = await DbNote.create({message : note.message});
+        //TODO: handle rejections
+        return mongoNote._id;
     }
 }
 
