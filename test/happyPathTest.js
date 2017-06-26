@@ -1,9 +1,16 @@
 'use strict';
 
-let expect = require("chai").expect;
+const expect = require("chai").expect;
+const request = require("request");
+const NoteUseCase = require("../domain/usecases/createNote")
 
 describe("Happy Path", function() {
-    it('always true', function() {
-        expect(true).to.equal(true);
+    let url = "http://localhost:3000/api/notes";
+
+    it("does not fails", function() {
+        request(url, function(error, response, body) {
+            new NoteUseCase().onNewNote({"message": "any"});
+            expect(true).to.equal(true);
+        });
     });
 });
