@@ -7,7 +7,7 @@ var Note = require('./Note');
 
 // TODO: remove coupling
 router.post('/', function (req, res) {
-
+    console.log(req.body);
     Note.create({
             message : req.body.message,
         }, 
