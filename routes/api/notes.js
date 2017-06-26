@@ -1,12 +1,15 @@
-var router = require('express').Router();
-var bodyParser = require('body-parser');
+'use strict';
+
+let router = require('express').Router();
+let bodyParser = require('body-parser');
 
 router.use(bodyParser.urlencoded({ extended: true }));
-var CreateNote = require(__base + '/domain/usecases/createNote');
+let CreateNote = require(__base + '/domain/usecases/NotesUseCase');
+let NoteRepository = require(__base + '/note-repository/NoteRepository');
 
 // api/notes
 router.post('/', function(req, res) {
-  new CreateNote().onNewNote({"message" : req.body.message});
+  new CreateNote(new NoteRepository()).onNewNote({"message" : req.body.message});
   //TODO: handle error case
   res.status(200).send();
 });
