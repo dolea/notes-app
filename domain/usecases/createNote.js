@@ -1,21 +1,20 @@
 'use strict'
 
-//TODO: inject collaborators
-var DbNote = require(__base + '/note-repository/note');
+class CreateNote {
+    constructor() {
+        //TODO: inject collaborators
+    }
 
-function CreateNote() {
-
+    onNote(note) {
+        let DbNote = require(__base + '/note-repository/note');
+        DbNote.create({
+                message : note.message,
+            },
+            function (err, note) {
+                //TODO: return or handle
+                console.log(note);
+            });
+    };
 }
-
-CreateNote.prototype.onNote = function(note) {
-	DbNote.create({
-            message : note.message,
-        }, 
-        function (err, note) {
-            //TODO: return or handle
-            console.log(note);
-        });
-	return;
-};
 
 module.exports = CreateNote;
