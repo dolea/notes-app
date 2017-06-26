@@ -2,7 +2,7 @@ var router = require('express').Router();
 var bodyParser = require('body-parser');
 
 router.use(bodyParser.urlencoded({ extended: true }));
-var Note = require('../../note_repository/note');
+var Note = require('../../note-repository/note');
 
 // api/notes
 router.post('/', function(req, res) {
