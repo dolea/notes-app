@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
-const BookmarkUseCase = require(__base + '/domain/usecases/BookmarkUseCase');
+const BookmarkUseCase = require(__base + '/bookmarks/BookmarkUseCase');
 const BookmarkRepository = require(__base + '/note-repository/BookmarkRepository');
 const Display = require(__base + '/Display');
 

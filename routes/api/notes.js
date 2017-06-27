@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json())
 
-const NotesUseCase = require(__base + '/domain/usecases/NotesUseCase');
+const NotesUseCase = require(__base + '/notes/NotesUseCase');
 const NoteRepository = require(__base + '/note-repository/NoteRepository');
 const Display = require(__base + '/Display');
 
