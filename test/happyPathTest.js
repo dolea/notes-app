@@ -2,7 +2,7 @@
 
 const expect = require("chai").expect;
 const request = require("request");
-const NoteUseCase = require("../domain/usecases/NotesUseCase")
+const NoteUseCase = require("../libs/domain/usecases/NotesUseCase")
 
 describe("Happy Path", function() {
     let url = "http://localhost:3000/api/notes";
