@@ -1,8 +1,8 @@
 'use strict';
 
 const router = require('express').Router();
-const NotesUseCase = require(__base + '/notes/NotesUseCase');
-const NoteRepository = require(__base + '/note-repository/NoteRepository');
+const NotesUseCase = require(__base + '/notes/notes-use-case');
+const NoteRepository = require(__base + '/note-repository/note-repository');
 const Display = require(__base + '/Display');
 
 const useCase = new NotesUseCase(new NoteRepository());

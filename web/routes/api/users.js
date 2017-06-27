@@ -2,8 +2,8 @@
 
 const router = require('express').Router();
 
-const BookmarkUseCase = require(__base + '/bookmarks/BookmarkUseCase');
-const BookmarkRepository = require(__base + '/note-repository/BookmarkRepository');
+const BookmarkUseCase = require(__base + '/bookmarks/bookmarks-use-case');
+const BookmarkRepository = require(__base + '/note-repository/bookmarks-repository');
 const Display = require(__base + '/Display');
 
 // api/users/:username/notes
