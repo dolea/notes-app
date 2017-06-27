@@ -1,8 +1,9 @@
 'use strict'
 
 class NotesUseCase {
-    constructor(repository) {
+    constructor(repository, display) {
         this.repository = repository;
+        this.display = display;
     }
 
     onNewNote(note) {
@@ -10,9 +11,11 @@ class NotesUseCase {
         this.repository.createNewNote({message : note.message});
     };
 
-    async findAllNotes() {
-        //TODO: instead of returning, it is probably better to send it back through an Display abstraction
-        return await this.repository.findAllNotes();
+    displayAllNotes() {
+        //TODO: instead of returning, it is probably better to send it back through an Display.js abstraction
+        this.repository.displayAllNotes()
+            .then(notes => this.display.output(notes))
+            .catch(error => this.display.outputError(error));
     }
 }
 

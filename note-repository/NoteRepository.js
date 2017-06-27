@@ -11,7 +11,7 @@ class NoteRepository {
         return mongoNote._id;
     }
 
-    async findAllNotes() {
+    async displayAllNotes() {
         //TODO: mongoose promises are deprecated (http://mongoosejs.com/docs/promises.html)
         //TODO: coupled to mongo model
         return await DbNote.find();

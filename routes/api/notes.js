@@ -1,16 +1,17 @@
 'use strict';
 
-let router = require('express').Router();
-let bodyParser = require('body-parser');
+const router = require('express').Router();
+const bodyParser = require('body-parser');
 
 router.use(bodyParser.urlencoded({ extended: true }));
-let NotesUseCase = require(__base + '/domain/usecases/NotesUseCase');
-let NoteRepository = require(__base + '/note-repository/NoteRepository');
+const NotesUseCase = require(__base + '/domain/usecases/NotesUseCase');
+const NoteRepository = require(__base + '/note-repository/NoteRepository');
+const Display = require(__base + '/Display');
 
-const useCase = new NotesUseCase(new NoteRepository());
 
 // api/notes
 router.post('/', function(req, res) {
+    const useCase = new NotesUseCase(new NoteRepository(), null);
     useCase.onNewNote({"message" : req.body.message});
   //TODO: handle error case
   res.status(200).send();
@@ -18,10 +19,8 @@ router.post('/', function(req, res) {
 
 // api/notes
 router.get('/', function(req, res) {
-    useCase.findAllNotes()
-        .then(allNotes => res.status(200).send(allNotes))
-        //TODO: delegate this logic to the use case, most likely
-        .catch(error => res.status(500).send("An error occurred " + error));
+    const useCase = new NotesUseCase(new NoteRepository(), new Display(res));
+    useCase.displayAllNotes();
 });
 
 module.exports = router;
