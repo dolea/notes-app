@@ -1,13 +1,12 @@
 'use strict'
 
 class BookmarkUseCase {
-    constructor(repository, display) {
+    constructor(repository) {
         this.repository = repository;
-        this.display = display;
     }
 
-    bookmarkNote(noteId, username) {
-        this.repository.bookmarkNote(noteId, username);
+    bookmarkNote(username, noteId) {
+        this.repository.addBookmarkedNote(noteId, username);
     }
 }
 

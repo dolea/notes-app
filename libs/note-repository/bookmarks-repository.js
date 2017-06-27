@@ -4,7 +4,7 @@ let DbBookmark = require('./bookmark');
 
 class BookmarkRepository {
 
-    async bookmarkNote(noteId, username) {
+    async addBookmarkedNote(username, noteId) {
         //TODO: handle rejections
         console.log(await DbBookmark.create({'noteId': noteId, 'username': username}));
     }
