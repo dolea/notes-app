@@ -1,10 +1,6 @@
 'use strict';
 
 const router = require('express').Router();
-const bodyParser = require('body-parser');
-
-router.use(bodyParser.urlencoded({ extended: true }));
-router.use(bodyParser.json())
 
 const NotesUseCase = require(__base + '/notes/NotesUseCase');
 const NoteRepository = require(__base + '/note-repository/NoteRepository');
