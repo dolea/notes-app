@@ -12,7 +12,13 @@ class NotesUseCase {
     };
 
     displayAllNotes(display) {
-        this.repository.displayAllNotes()
+        this.repository.findAllNotes()
+            .then(notes => display.output(notes))
+            .catch(error => display.outputError(error));
+    }
+
+    displayNote(noteId, display) {
+        this.repository.findNoteById(noteId)
             .then(notes => display.output(notes))
             .catch(error => display.outputError(error));
     }

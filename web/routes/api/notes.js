@@ -17,4 +17,9 @@ router.get('/', function(req, res) {
     useCase.displayAllNotes(new Display(res));
 });
 
+// api/notes/:noteId
+router.get('/:noteId', function(req, res) {
+    useCase.displayNote(req.params.noteId, new Display(res));
+});
+
 module.exports = router;

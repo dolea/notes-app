@@ -10,9 +10,14 @@ class NoteRepository {
         return newNoteFrom(mongoNote);
     }
 
-    async displayAllNotes() {
+    async findAllNotes() {
         const mongoNotes = await DbNote.find();
         return mongoNotes.map(mongoNote => newNoteFrom(mongoNote));
+    }
+
+    async findNoteById(noteId) {
+        const mongoNote = await DbNote.findOne({_id : noteId});
+        return newNoteFrom(mongoNote);
     }
 }
 
