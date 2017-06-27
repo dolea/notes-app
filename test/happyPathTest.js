@@ -9,8 +9,18 @@ describe("Happy Path", function() {
 
     it("does not fails", function() {
         request(url, function(error, response, body) {
-            new NoteUseCase().onNewNote({"message": "any"});
+            new NoteUseCase().onNewNote("::message::", "::creator::", new DumbDisplay());
             expect(true).to.equal(true);
         });
     });
 });
+
+class DumbDisplay{
+    output(notes) {
+
+    }
+
+    outputError(error) {
+
+    }
+}

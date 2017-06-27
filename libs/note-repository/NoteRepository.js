@@ -7,8 +7,7 @@ class NoteRepository {
 
     async createNewNote(note) {
         const mongoNote = await DbNote.create(note);
-        //TODO: handle rejections
-        return mongoNote._id;
+        return newNoteFrom(mongoNote);
     }
 
     async displayAllNotes() {
