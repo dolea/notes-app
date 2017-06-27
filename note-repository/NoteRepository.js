@@ -6,7 +6,7 @@ class NoteRepository {
 
     async createNewNote(note) {
         //TODO: mongoose promises are deprecated (http://mongoosejs.com/docs/promises.html)
-        const mongoNote = await DbNote.create({message : note.message});
+        const mongoNote = await DbNote.create(note);
         //TODO: handle rejections
         return mongoNote._id;
     }

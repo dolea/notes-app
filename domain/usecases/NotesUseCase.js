@@ -6,9 +6,9 @@ class NotesUseCase {
         this.display = display;
     }
 
-    onNewNote(note) {
+    onNewNote(message, username) {
         //TODO: return or pass the result of the promise
-        this.repository.createNewNote({message : note.message});
+        this.repository.createNewNote({message : message, creator : username});
     };
 
     displayAllNotes() {
