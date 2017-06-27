@@ -1,6 +1,7 @@
 'use strict';
 
-let DbNote = require('./note');
+const DbNote = require('./mongo-note');
+const Note = require('../notes/note');
 
 class NoteRepository {
 
@@ -11,9 +12,13 @@ class NoteRepository {
     }
 
     async displayAllNotes() {
-        //TODO: coupled to mongo model
-        return await DbNote.find();
+        const mongoNotes = await DbNote.find();
+        return mongoNotes.map(mongoNote => newNoteFrom(mongoNote));
     }
+}
+
+function newNoteFrom(mongoNote) {
+    return new Note(mongoNote._id, mongoNote.message, mongoNote.creator);
 }
 
 module.exports = NoteRepository;
