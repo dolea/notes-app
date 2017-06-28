@@ -1,6 +1,6 @@
 'use strict';
 
-const DbBookmark = require('./mongo-bookmark');
+const DbBookmark = require('./model/bookmark');
 
 class BookmarkRepository {
 
