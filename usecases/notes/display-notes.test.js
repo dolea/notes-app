@@ -18,6 +18,7 @@ describe('display notes use case', () => {
     });
 });
 
+//TODO: mock instead of fake
 class FakeRepository {
     createNewNote(message, user) {
         expect(message).to.equal('::any message::');

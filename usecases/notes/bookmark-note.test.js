@@ -10,6 +10,7 @@ describe('BookmarkNoteUseCase', () => {
     });
 });
 
+//TODO: mock instead of fake
 class FakeRepository {
     addBookmarkedNote(noteId, user) {
         expect(noteId).to.equal('::any note id::');
