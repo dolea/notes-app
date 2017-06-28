@@ -9,12 +9,9 @@ const expect = require("chai").expect;
 
 const NoteRepository = require('../libs/repository/note-repository');
 const DbNote = require('../libs/repository/mongo-note');
+const DbBookmark = require('../libs/repository/mongo-bookmark');
 
 describe("NoteRepository",() => {
-    function cleanUp () {
-        db.connection.db.dropDatabase();
-    }
-
     after(cleanUp);
 
     let createdNote;
@@ -43,3 +40,25 @@ describe("NoteRepository",() => {
         });
     });
 });
+
+describe("Bookmark notes",() => {
+    after(cleanUp);
+
+    it("should return bookmarked notes for a user", async () => {
+        const anyNote = await new NoteRepository().createNewNote("::any message::", "::any author::");
+        const anotherNote = await new NoteRepository().createNewNote("::another message::", "::another author::");
+
+        await DbBookmark.create({
+            _id: "::any user::",
+            bookmarkedNotes: [mongoose.Types.ObjectId(anyNote.noteId), mongoose.Types.ObjectId(anotherNote.noteId)]
+        });
+
+        return new NoteRepository().findBookmarkedNotesByCreatorId("::any user::").then(notes => {
+            expect(notes).to.deep.equal([anyNote, anotherNote]);
+        });
+    });
+});
+
+function cleanUp () {
+    db.connection.db.dropDatabase();
+}
