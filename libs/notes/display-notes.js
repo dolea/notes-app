@@ -22,6 +22,12 @@ class DisplayNotesUseCase {
             .then(notes => display.output(notes))
             .catch(error => display.outputError(error));
     }
+
+    bookmarkedBy(username, display) {
+        this.repository.findBookmarkedNotesByCreatorId(username)
+            .then(notes => display.output(notes))
+            .catch(error => display.outputError(error));
+    }
 }
 
 module.exports = DisplayNotesUseCase;
