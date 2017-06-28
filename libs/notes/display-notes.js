@@ -6,7 +6,7 @@ class DisplayNotesUseCase {
     }
 
     onNewNote(message, username, display) {
-        this.repository.createNewNote({message : message, creator : username})
+        this.repository.createNewNote(message, username)
             .then(notes => display.output(notes))
             .catch(error => display.outputError(error));
     };

@@ -6,8 +6,8 @@ const Note = require('../notes/note');
 
 class NoteRepository {
 
-    async createNewNote(note) {
-        const mongoNote = await DbNote.create(note);
+    async createNewNote(message, author) {
+        const mongoNote = await DbNote.create({'message': message, 'author': author});
         return newNoteFrom(mongoNote);
     }
 

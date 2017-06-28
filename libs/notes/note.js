@@ -1,9 +1,9 @@
 class Note {
 
-    constructor(noteId, message, creatorId) {
+    constructor(noteId, message, author) {
         this.noteId = noteId;
         this.message = message;
-        this.creatorId = creatorId;
+        this.author = author;
     }
 }
 
