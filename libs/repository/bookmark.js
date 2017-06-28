@@ -1,9 +1,10 @@
 'use strict';
 
 const mongoose = require('mongoose');
+
 const BookmarkSchema = new mongoose.Schema({
-    bookmarkedNotes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note' }],
-    _id: String
+    _id: String,
+    bookmarkedNotes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note' }]
 });
 mongoose.model('Bookmark', BookmarkSchema);
 
