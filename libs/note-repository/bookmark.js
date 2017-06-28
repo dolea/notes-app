@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const BookmarkSchema = new mongoose.Schema({
     bookmarkedNotes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note' }],
-    username: String
+    _id: String
 });
 mongoose.model('Bookmark', BookmarkSchema);
 
