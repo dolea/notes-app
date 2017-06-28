@@ -11,14 +11,13 @@
   "dependencies": {
     "bluebird": "3.5.0",
     "body-parser": "1.17.2",
-    "chai": "^4.0.2",
     "express": "4.15.3",
-    "mocha": "^3.4.2",
-    "mongoose": "4.11.0",
-    "request": "^2.81.0"
+    "mongoose": "4.11.0"
   },
   "devDependencies": {
     "nodemon": "^1.11.0",
-    "sinon": "^2.3.6"
+    "sinon": "^2.3.6",
+    "mocha": "^3.4.2",
+    "chai": "^4.0.2"
   }
 }
