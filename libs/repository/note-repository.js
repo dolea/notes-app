@@ -1,7 +1,7 @@
 'use strict';
 
 const DbNote = require('./mongo-note');
-const DbBookmark = require('./bookmark');
+const DbBookmark = require('./mongo-bookmark');
 const Note = require('../notes/note');
 
 class NoteRepository {
