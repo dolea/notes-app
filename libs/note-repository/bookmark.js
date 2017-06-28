@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const BookmarkSchema = new mongoose.Schema({
-    noteId: mongoose.Schema.Types.ObjectId,
+    noteId: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note' }],
     username: String
 });
 mongoose.model('Bookmark', BookmarkSchema);
