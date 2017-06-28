@@ -10,14 +10,14 @@ const Display = require(__base + '/usecases/Display');
 const bookmark = new BookmarkNoteUseCase(new BookmarkRepository());
 const displayNotes = new DisplayNotesUseCase(new NoteRepository());
 
-// api/users/:username/bookmarks/:noteId
+// api/users
 router.post('/:username/bookmarks/:noteId', function(req, res) {
-    bookmark.bookmarkNote(req.params.username, req.params.noteId);
-    //TODO: handle error case
-    res.status(200).send();
+    bookmark.bookmarkNote(req.params.username, req.params.noteId)
+        .then(() => res.status(200).send())
+        .catch((error) => res.status(500).send(error));
 });
 
-// api/users/:username/bookmarks
+// api/users
 router.get('/:username/bookmarks', function(req, res) {
     displayNotes.bookmarkedBy(req.params.username, new Display(res));
 });
