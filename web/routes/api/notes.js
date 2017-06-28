@@ -3,7 +3,7 @@
 const router = require('express').Router();
 const DisplayNotesUseCase = require(__base + '/usecases/notes/display-notes');
 const NoteRepository = require(__base + '/repository/mongo/note-repository');
-const Display = require(__base + '/usecases/Display');
+const Display = require('../../rest-display');
 
 const displayNote = new DisplayNotesUseCase(new NoteRepository());
 
