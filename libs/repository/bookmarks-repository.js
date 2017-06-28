@@ -6,7 +6,7 @@ class BookmarkRepository {
 
     async addBookmarkedNote(username, noteId) {
         //TODO: handle rejections
-        console.log(await DbBookmark.update({'_id': username}, {$push: {'bookmarkedNotes': noteId}}, {upsert: true}));
+        return await DbBookmark.update({'_id': username}, {$push: {'bookmarkedNotes': noteId}}, {upsert: true});
     }
 }
 
