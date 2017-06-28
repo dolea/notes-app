@@ -2,8 +2,8 @@
 
 const router = require('express').Router();
 const BookmarkNoteUseCase = require(__base + '/libs/notes/bookmark-note');
-const BookmarkRepository = require(__base + '/repository/bookmarks-repository');
-const NoteRepository = require(__base + '/repository/note-repository');
+const BookmarkRepository = require(__base + '/repository/mongo/bookmarks-repository');
+const NoteRepository = require(__base + '/repository/mongo/note-repository');
 const DisplayNotesUseCase = require(__base + '/libs/notes/display-notes');
 const Display = require(__base + '/libs/Display');
 

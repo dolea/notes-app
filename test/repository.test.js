@@ -6,10 +6,10 @@ const db = mongoose.connect('mongodb://localhost/test');
 
 const expect = require("chai").expect;
 
-const BookmarksRepository = require('../repository/bookmarks-repository');
-const DbBookmark = require('../repository/mongo-bookmark');
-const NoteRepository = require('../repository/note-repository');
-const DbNote = require('../repository/mongo-note');
+const BookmarksRepository = require('../repository/mongo/bookmarks-repository');
+const DbBookmark = require('../repository/mongo/mongo-bookmark');
+const NoteRepository = require('../repository/mongo/note-repository');
+const DbNote = require('../repository/mongo/mongo-note');
 
 describe("BookmarksRepository",() => {
 
