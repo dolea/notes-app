@@ -1,6 +1,6 @@
 'use strict';
 
-const DisplayNotesUseCase = require('./display-notes');
+const DisplayNotesUseCase = require('../usecases/notes/display-notes');
 const expect = require("chai").expect;
 
 

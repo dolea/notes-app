@@ -1,6 +1,6 @@
 'use strict';
 
-const BookmarkNoteUseCase = require('./bookmark-note');
+const BookmarkNoteUseCase = require('../usecases/notes/bookmark-note');
 const expect = require("chai").expect;
 
 
