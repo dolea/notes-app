@@ -22,8 +22,8 @@ class NoteRepository {
     }
 
     async findBookmarkedNotesByCreatorId(username) {
-        //TODO: coupling use case to mongo
-        return await DbBookmark.findOne({'_id': username}).populate('bookmarkedNotes');
+        const bookmark = await DbBookmark.findOne({'_id': username}).populate('bookmarkedNotes');
+        return bookmark.bookmarkedNotes.map(mongoNote => newNoteFrom(mongoNote));
     }
 }
 
