@@ -5,7 +5,8 @@ const DbBookmark = require('./model/bookmark');
 class BookmarkRepository {
 
     async addBookmarkedNote(username, noteId) {
-        return await DbBookmark.update({'_id': username}, {$push: {'bookmarkedNotes': noteId}}, {upsert: true});
+        //TODO: $addToSet to avoid duplicates it's actually business logic. Shouldn't be here
+        return await DbBookmark.update({'_id': username}, {$addToSet: {'bookmarkedNotes': noteId}}, {upsert: true});
     }
 }
 

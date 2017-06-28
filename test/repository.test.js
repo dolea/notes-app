@@ -42,6 +42,21 @@ describe("BookmarksRepository",() => {
             });
         })
     });
+
+    describe("User bookmarks same note twice",() => {
+        after(cleanUp);
+        it("should add only once", async () => {
+            const anyNoteId = mongoose.Types.ObjectId();
+            await new BookmarksRepository().addBookmarkedNote("::any user::", anyNoteId);
+            await new BookmarksRepository().addBookmarkedNote("::any user::", anyNoteId);
+
+
+            return DbBookmark.findOne().then(bookmark => {
+                expect(bookmark._id).to.equal("::any user::");
+                expect(bookmark.bookmarkedNotes).to.deep.equal([anyNoteId])
+            });
+        })
+    });
 });
 
 describe("NoteRepository",() => {
