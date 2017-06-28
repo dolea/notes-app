@@ -2,7 +2,7 @@
 
 const DbNote = require('./model/note');
 const DbBookmark = require('./model/bookmark');
-const Note = require('../../libs/notes/note');
+const Note = require('../../usecases/notes/note');
 
 class NoteRepository {
 

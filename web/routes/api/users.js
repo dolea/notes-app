@@ -1,11 +1,11 @@
 'use strict';
 
 const router = require('express').Router();
-const BookmarkNoteUseCase = require(__base + '/libs/notes/bookmark-note');
+const BookmarkNoteUseCase = require(__base + '/usecases/notes/bookmark-note');
 const BookmarkRepository = require(__base + '/repository/mongo/bookmarks-repository');
 const NoteRepository = require(__base + '/repository/mongo/note-repository');
-const DisplayNotesUseCase = require(__base + '/libs/notes/display-notes');
-const Display = require(__base + '/libs/Display');
+const DisplayNotesUseCase = require(__base + '/usecases/notes/display-notes');
+const Display = require(__base + '/usecases/Display');
 
 const bookmark = new BookmarkNoteUseCase(new BookmarkRepository());
 const displayNotes = new DisplayNotesUseCase(new NoteRepository());
