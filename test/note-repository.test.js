@@ -17,13 +17,20 @@ describe("NoteRepository",() => {
 
     after(cleanUp);
 
+    let createdNote;
     it("should add a note and return it", async () => {
-        const returnedNote = await new NoteRepository().createNewNote("::any message::", "::any author::");
+        createdNote = await new NoteRepository().createNewNote("::any message::", "::any author::");
 
         return DbNote.findOne().then(note => {
-            expect(note._id).to.deep.equal(returnedNote.noteId);
-            expect(note.message).to.equal(returnedNote.message).to.equal("::any message::");
-            expect(note.author).to.equal(returnedNote.author).to.equal("::any author::");
+            expect(note._id.toString()).to.deep.equal(createdNote.noteId);
+            expect(note.message).to.equal(createdNote.message).to.equal("::any message::");
+            expect(note.author).to.equal(createdNote.author).to.equal("::any author::");
+        });
+    });
+
+    it("should recover created note", async () => {
+        return new NoteRepository().findNoteById(createdNote.noteId).then(returnedNote => {
+            expect(returnedNote).to.deep.equal(createdNote);
         });
     });
 });

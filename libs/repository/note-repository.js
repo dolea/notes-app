@@ -28,7 +28,7 @@ class NoteRepository {
 }
 
 function newNoteFrom(mongoNote) {
-    return new Note(mongoNote._id, mongoNote.message, mongoNote.author);
+    return new Note(mongoNote._id.toString(), mongoNote.message, mongoNote.author);
 }
 
 module.exports = NoteRepository;
