@@ -7,12 +7,12 @@ class BookmarkRepository {
 
     async addBookmarkedNote(username, noteId) {
         //TODO: handle rejections
-        console.log(await DbBookmark.create({'noteId': noteId, 'username': username}));
+        console.log(await DbBookmark.create({'username': username, 'bookmarkedNotes': noteId}));
     }
 
     async findBookmarkedNotesByCreatorId(username) {
         //TODO: coupling use case to mongo
-        return await DbBookmark.findOne({'username': username});
+        return await DbBookmark.findOne({'username': username}).populate('bookmarkedNotes');
     }
 }
 

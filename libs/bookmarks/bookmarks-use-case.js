@@ -6,7 +6,7 @@ class BookmarkUseCase {
     }
 
     bookmarkNote(username, noteId) {
-        this.repository.addBookmarkedNote(noteId, username);
+        this.repository.addBookmarkedNote(username, noteId);
     }
 
     displayBookmarks(username, display) {
