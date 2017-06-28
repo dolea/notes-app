@@ -9,7 +9,7 @@ class BookmarkUseCase {
         this.repository.addBookmarkedNote(username, noteId);
     }
 
-    displayBookmarks(username, display) {
+    displayBookmarkedNotes(username, display) {
         this.repository.findBookmarkedNotesByCreatorId(username)
             .then(notes => display.output(notes))
             .catch(error => display.outputError(error));
