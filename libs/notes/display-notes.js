@@ -1,6 +1,6 @@
 'use strict'
 
-class NotesUseCase {
+class DisplayNotesUseCase {
     constructor(repository) {
         this.repository = repository;
     }
@@ -11,17 +11,17 @@ class NotesUseCase {
             .catch(error => display.outputError(error));
     };
 
-    displayAllNotes(display) {
+    allNotes(display) {
         this.repository.findAllNotes()
             .then(notes => display.output(notes))
             .catch(error => display.outputError(error));
     }
 
-    displayNote(noteId, display) {
+    byId(noteId, display) {
         this.repository.findNoteById(noteId)
             .then(notes => display.output(notes))
             .catch(error => display.outputError(error));
     }
 }
 
-module.exports = NotesUseCase;
+module.exports = DisplayNotesUseCase;
