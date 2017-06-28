@@ -2,7 +2,7 @@
 
 const DbNote = require('./mongo-note');
 const DbBookmark = require('./mongo-bookmark');
-const Note = require('../notes/note');
+const Note = require('../libs/notes/note');
 
 class NoteRepository {
 
