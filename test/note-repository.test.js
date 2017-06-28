@@ -33,4 +33,13 @@ describe("NoteRepository",() => {
             expect(returnedNote).to.deep.equal(createdNote);
         });
     });
+
+    it("should recover all notes", async () => {
+        const anotherNote = await new NoteRepository().createNewNote("::another message::", "::another author::");
+
+        return new NoteRepository().findAllNotes().then(returnedNotes => {
+            expect(returnedNotes[0]).to.deep.equal(createdNote);
+            expect(returnedNotes[1]).to.deep.equal(anotherNote);
+        });
+    });
 });
