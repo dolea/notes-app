@@ -17,7 +17,6 @@ describe("BookmarksRepository",() => {
 
     describe("User has no bookmarks",() => {
         after(cleanUp);
-
         it("should store a bookmark", async () => {
             const anyNoteId = mongoose.Types.ObjectId();
             await new BookmarksRepository().addBookmarkedNote("::any user::", anyNoteId);
@@ -30,6 +29,7 @@ describe("BookmarksRepository",() => {
     });
 
     describe("User bookmarks two notes",() => {
+        after(cleanUp);
         it("should add bookmarks to user", async () => {
             const anyNoteId = mongoose.Types.ObjectId();
             await new BookmarksRepository().addBookmarkedNote("::any user::", anyNoteId);
