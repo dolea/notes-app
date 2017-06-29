@@ -18,7 +18,8 @@ describe('all repository tests', () => {
     describe("BookmarksRepository",() => {
 
         describe("User has no bookmarks",() => {
-            after(cleanUp);
+            before(() => DbBookmark.remove({}));
+            after(() => DbBookmark.remove({}));
             it("should store a bookmark", async () => {
                 const anyNoteId = mongoose.Types.ObjectId();
                 await new BookmarksRepository().addBookmarkedNote("::any user::", anyNoteId);
@@ -31,7 +32,7 @@ describe('all repository tests', () => {
         });
 
         describe("User bookmarks two notes",() => {
-            after(cleanUp);
+            after(() => DbBookmark.remove({}));
             it("should add bookmarks to user", async () => {
                 const anyNoteId = mongoose.Types.ObjectId();
                 await new BookmarksRepository().addBookmarkedNote("::any user::", anyNoteId);
@@ -48,7 +49,7 @@ describe('all repository tests', () => {
         });
 
         describe("User bookmarks same note twice",() => {
-            after(cleanUp);
+            after(() => DbBookmark.remove({}));
             it("should add only once", async () => {
                 const anyNoteId = mongoose.Types.ObjectId();
                 await new BookmarksRepository().addBookmarkedNote("::any user::", anyNoteId);
@@ -64,7 +65,8 @@ describe('all repository tests', () => {
     });
 
     describe("NoteRepository",() => {
-        after(cleanUp);
+        before(() => DbNote.remove({}));
+        after(() => DbNote.remove({}));
 
         let createdNote;
         it("should add a note and return it", async () => {
@@ -94,7 +96,7 @@ describe('all repository tests', () => {
     });
 
     describe("Bookmark notes",() => {
-        after(cleanUp);
+        after(() => {DbNote.remove({}); DbBookmark.remove({})});
 
         it("should return bookmarked notes for a user", async () => {
             const anyNote = await new NoteRepository().createNewNote("::any message::", "::any author::");
