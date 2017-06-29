@@ -1,3 +1,5 @@
+'use strict';
+
 class Note {
 
     constructor(noteId, message, author) {
