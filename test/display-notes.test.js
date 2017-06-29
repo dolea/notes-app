@@ -6,15 +6,15 @@ const expect = require("chai").expect;
 
 describe('display notes use case', () => {
     it('should call the repository to create a note', () => {
-        new DisplayNotesUseCase(new FakeRepository()).onNewNote('::any message::', '::any username::', null);
+        new DisplayNotesUseCase(new FakeRepository()).onNewNote('::any message::', '::any username::', new DumbDisplay());
     });
 
     it('should call the repository to retrieve a note', () => {
-        new DisplayNotesUseCase(new FakeRepository()).byId('::any note id::', null);
+        new DisplayNotesUseCase(new FakeRepository()).byId('::any note id::', new DumbDisplay());
     });
 
     it('should call the repository to retrieve bookmakrs', () => {
-        new DisplayNotesUseCase(new FakeRepository()).bookmarkedBy('::any user::', null);
+        new DisplayNotesUseCase(new FakeRepository()).bookmarkedBy('::any user::', new DumbDisplay());
     });
 });
 
@@ -34,5 +34,12 @@ class FakeRepository {
     findBookmarkedNotesByCreatorId(username) {
         expect(username).to.equal('::any user::');
         return Promise.resolve({});
+    }
+}
+
+//TODO: verify interactions
+class DumbDisplay {
+    output(note) {
+
     }
 }
