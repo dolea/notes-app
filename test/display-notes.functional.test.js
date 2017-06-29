@@ -6,6 +6,7 @@ const expect = require("chai").expect;
 
 //TODO: fix conflict with repository test (trying to open a mongo connection when already there is one)
 describe('executes flow', function () {
+    after(() => app.Server.close());
 
     it('should create a note', async () => {
         const createdNote = await postNote({message: "test message", username: "test user"});
@@ -15,7 +16,7 @@ describe('executes flow', function () {
     });
 
     it('should recover a created note', async () => {
-        const createdNote = postNote({message: "test message", username: "test user"});
+        const createdNote = await postNote({message: "test message", username: "test user"});
 
         const recoveredNote = await request({
             uri: 'http://localhost:3000/api/notes/' + createdNote.noteId,

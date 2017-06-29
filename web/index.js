@@ -1,8 +1,8 @@
 'use strict';
 
 const config = require('../config');
-const app = require('./server');
+const App = require('./server');
 
-app.listen(3000);
+const Server = App.listen(3000);
 
-module.exports = app;
+module.exports = {Server: Server};
