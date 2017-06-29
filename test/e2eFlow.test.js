@@ -34,4 +34,14 @@ describe('executes flow', function () {
 
         expect(recoveredNote).to.be.deep.equal(createdNote);
     });
+
+    it('should recover all notes', async () => {
+        const recoveredNotes = await request({
+            uri: 'http://localhost:3000/api/notes/',
+            json: true
+        });
+
+        //TODO: fix weak assertion
+        expect(recoveredNotes).to.not.be.empty;
+    });
 });
