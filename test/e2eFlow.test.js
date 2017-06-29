@@ -4,6 +4,7 @@ const http = require('http');
 const app = require('../web');
 const expect = require("chai").expect;
 
+//TODO: fix conflict with repository test (trying to open a mongo connection when already there is one)
 describe('executes flow', function() {
     it('should show contact a form', (done) => {
         const options = {
