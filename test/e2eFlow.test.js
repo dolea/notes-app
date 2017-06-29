@@ -8,24 +8,14 @@ const expect = require("chai").expect;
 describe('executes flow', function () {
 
     it('should create a note', async () => {
-        const createdNote = await request({
-            uri: 'http://localhost:3000/api/notes',
-            method: 'POST',
-            body: {message: "test message", username: "test user"},
-            json: true
-        });
+        const createdNote = await postNote({message: "test message", username: "test user"});
 
         expect(createdNote.message).to.be.equal("test message");
         expect(createdNote.author).to.be.equal("test user");
     });
 
     it('should recover a created note', async () => {
-        const createdNote = await request({
-            uri: 'http://localhost:3000/api/notes',
-            method: 'POST',
-            body: {message: "test message", username: "test user"},
-            json: true
-        });
+        const createdNote = postNote({message: "test message", username: "test user"});
 
         const recoveredNote = await request({
             uri: 'http://localhost:3000/api/notes/' + createdNote.noteId,
@@ -45,3 +35,12 @@ describe('executes flow', function () {
         expect(recoveredNotes).to.not.be.empty;
     });
 });
+
+function postNote(body) {
+    return request({
+        uri: 'http://localhost:3000/api/notes',
+        method: 'POST',
+        body: body,
+        json: true
+    });
+}
