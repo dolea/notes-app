@@ -6,8 +6,8 @@ class DisplayNotesUseCase {
     }
 
     async onNewNote(message, username, display) {
-        const notes = await this.repository.createNewNote(message, username);
-        display.output(notes);
+        const note = await this.repository.createNewNote(message, username);
+        display.output(note);
     };
 
     async allNotes(display) {
