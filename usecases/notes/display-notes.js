@@ -5,28 +5,24 @@ class DisplayNotesUseCase {
         this.repository = repository;
     }
 
-    onNewNote(message, username, display) {
-        this.repository.createNewNote(message, username)
-            .then(notes => display.output(notes))
-            .catch(error => display.outputError(error));
+    async onNewNote(message, username, display) {
+        const notes = await this.repository.createNewNote(message, username);
+        display.output(notes);
     };
 
-    allNotes(display) {
-        this.repository.findAllNotes()
-            .then(notes => display.output(notes))
-            .catch(error => display.outputError(error));
+    async allNotes(display) {
+        const allNotes = await this.repository.findAllNotes();
+        display.output(allNotes);
     }
 
-    byId(noteId, display) {
-        this.repository.findNoteById(noteId)
-            .then(notes => display.output(notes))
-            .catch(error => display.outputError(error));
+    async byId(noteId, display) {
+        const note = await this.repository.findNoteById(noteId);
+        display.output(note);
     }
 
-    bookmarkedBy(username, display) {
-        this.repository.findBookmarkedNotesByCreatorId(username)
-            .then(notes => display.output(notes))
-            .catch(error => display.outputError(error));
+    async bookmarkedBy(username, display) {
+        const notes = this.repository.findBookmarkedNotesByCreatorId(username);
+        display.output(notes);
     }
 }
 
