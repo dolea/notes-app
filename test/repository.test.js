@@ -64,37 +64,6 @@ describe('all repository tests', () => {
         });
     });
 
-    describe("NoteRepository",() => {
-        before(() => DbNote.remove({}));
-        after(() => DbNote.remove({}));
-
-        let createdNote;
-        it("should add a note and return it", async () => {
-            createdNote = await new NoteRepository().createNewNote("::any message::", "::any author::");
-
-            return DbNote.findOne().then(note => {
-                expect(note._id.toString()).to.deep.equal(createdNote.noteId);
-                expect(note.message).to.equal(createdNote.message).to.equal("::any message::");
-                expect(note.author).to.equal(createdNote.author).to.equal("::any author::");
-            });
-        });
-
-        it("should recover created note", async () => {
-            return new NoteRepository().findNoteById(createdNote.noteId).then(returnedNote => {
-                expect(returnedNote).to.deep.equal(createdNote);
-            });
-        });
-
-        it("should recover all notes", async () => {
-            const anotherNote = await new NoteRepository().createNewNote("::another message::", "::another author::");
-
-            return new NoteRepository().findAllNotes().then(returnedNotes => {
-                expect(returnedNotes[0]).to.deep.equal(createdNote);
-                expect(returnedNotes[1]).to.deep.equal(anotherNote);
-            });
-        });
-    });
-
     describe("Bookmark notes",() => {
         after(() => {DbNote.remove({}); DbBookmark.remove({})});
 
