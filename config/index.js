@@ -2,4 +2,4 @@
 
 const mongodb = require('./mongodb');
 
-module.exports = Object.assign({}, mongodb);
+module.exports = {Database: mongodb};
