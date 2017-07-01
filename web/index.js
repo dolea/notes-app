@@ -1,9 +1,25 @@
 'use strict';
 
-const Database = require('../config').Database;
-const App = require('./server');
+class Application {
 
-const DatabaseConnection = Database.connect('mongodb://localhost/kubide');
-const Server = App.listen(3000);
+    constructor() {
+        this.Database = require('../config').Database;
+        this.Server = require('./server');
+        this.serverConnection = null;
+    }
 
-module.exports = {Server: Server, Db: DatabaseConnection};
+    async startApplicationWith({Port, DatabaseUrl}) {
+        const databaseConnection = await this.Database.connect(DatabaseUrl);
+        this.serverConnection = await this.Server.listen(Port);
+
+        return {DatabaseConnection: databaseConnection, ServerConnection: this.serverConnection};
+    }
+
+    async stopApplication() {
+        await this.serverConnection.close();
+        await this.Database.disconnect();
+    }
+
+}
+
+module.exports = Application;

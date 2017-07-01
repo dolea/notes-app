@@ -1,11 +1,13 @@
 'use strict';
 
 const request = require('request-promise');
-const app = require('../web');
+const App = require('../web');
+const app = new App();
 const expect = require("chai").expect;
 
 describe('executes flow', function () {
-    after(() => {app.Server.close(); app.Db.disconnect()});
+    before(() => app.startApplicationWith({Port: 3000, DatabaseUrl: 'mongodb://localhost/kubide'}));
+    after(() => app.stopApplication());
 
     describe('POST /api/notes', function () {
         it('should create a note', async () => {
