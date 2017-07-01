@@ -11,15 +11,15 @@ const bookmark = new BookmarkNoteUseCase(new BookmarkRepository());
 const displayNotes = new DisplayNotesUseCase(new NoteRepository());
 
 // api/users
-router.post('/:username/bookmarks/:noteId', function(req, res) {
+router.post('/:username/bookmarks/:noteId', function(req, res, next) {
     bookmark.bookmarkNote(req.params.username, req.params.noteId)
         .then(() => res.status(200).send())
-        .catch((error) => res.status(500).send(error));
+        .catch(e => next(e));
 });
 
 // api/users
-router.get('/:username/bookmarks', function(req, res) {
-    displayNotes.bookmarkedBy(req.params.username, new Display(res));
+router.get('/:username/bookmarks', function(req, res, next) {
+    displayNotes.bookmarkedBy(req.params.username, new Display(res)).catch(e => next(e));
 });
 
 module.exports = router;
