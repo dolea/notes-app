@@ -25,6 +25,8 @@ class DisplayNotesUseCase {
     }
 
     async bookmarkedBy(username, display) {
+        if(!username) return display.outputValidationError("username invalid");
+
         const notes = await this.repository.findBookmarkedNotesByCreatorId(username);
         display.output(notes);
     }

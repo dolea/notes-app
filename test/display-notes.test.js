@@ -54,13 +54,28 @@ describe('display notes', () => {
         beforeEach(() => outputValidationErrorSpy = sinon.spy(displayMock, "outputValidationError"));
         afterEach(() => displayMock.outputValidationError.restore());
 
-        it("should reject null message", async () => {
+        it("should reject null noteId", async () => {
             displayNotes.byId(null, displayMock);
             expect(outputValidationErrorSpy.calledOnce).to.be.equal(true);
         });
 
-        it("should reject undefined message", async () => {
+        it("should reject undefined noteId", async () => {
             displayNotes.byId(undefined, displayMock);
+            expect(outputValidationErrorSpy.calledOnce).to.be.equal(true);
+        });
+    });
+
+    describe("validates input on bookmarkedBy",() => {
+        beforeEach(() => outputValidationErrorSpy = sinon.spy(displayMock, "outputValidationError"));
+        afterEach(() => displayMock.outputValidationError.restore());
+
+        it("should reject null user", async () => {
+            displayNotes.bookmarkedBy(null, displayMock);
+            expect(outputValidationErrorSpy.calledOnce).to.be.equal(true);
+        });
+
+        it("should reject undefined user", async () => {
+            displayNotes.bookmarkedBy(undefined, displayMock);
             expect(outputValidationErrorSpy.calledOnce).to.be.equal(true);
         });
     });
