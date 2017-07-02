@@ -20,7 +20,7 @@ describe('all repository tests', () => {
             after(() => DbBookmark.remove({}));
             it("should store a bookmark", async () => {
                 const anyNoteId = mongoose.Types.ObjectId();
-                await new BookmarksRepository().addBookmarkedNote("::any user::", anyNoteId);
+                await new BookmarksRepository().pushBookmarkedNote("::any user::", anyNoteId);
 
                 return DbBookmark.findOne().then(bookmark => {
                     expect(bookmark._id).to.equal("::any user::");
@@ -33,10 +33,10 @@ describe('all repository tests', () => {
             after(() => DbBookmark.remove({}));
             it("should add bookmarks to user", async () => {
                 const anyNoteId = mongoose.Types.ObjectId();
-                await new BookmarksRepository().addBookmarkedNote("::any user::", anyNoteId);
+                await new BookmarksRepository().pushBookmarkedNote("::any user::", anyNoteId);
 
                 const anotherNoteId = mongoose.Types.ObjectId();
-                await new BookmarksRepository().addBookmarkedNote("::any user::", anotherNoteId);
+                await new BookmarksRepository().pushBookmarkedNote("::any user::", anotherNoteId);
 
 
                 return DbBookmark.findOne().then(bookmark => {
@@ -50,8 +50,8 @@ describe('all repository tests', () => {
             after(() => DbBookmark.remove({}));
             it("should add only once", async () => {
                 const anyNoteId = mongoose.Types.ObjectId();
-                await new BookmarksRepository().addBookmarkedNote("::any user::", anyNoteId);
-                await new BookmarksRepository().addBookmarkedNote("::any user::", anyNoteId);
+                await new BookmarksRepository().pushBookmarkedNote("::any user::", anyNoteId);
+                await new BookmarksRepository().pushBookmarkedNote("::any user::", anyNoteId);
 
 
                 return DbBookmark.findOne().then(bookmark => {

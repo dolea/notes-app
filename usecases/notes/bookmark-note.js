@@ -6,7 +6,7 @@ class BookmarkNoteUseCase {
     }
 
     async bookmarkNote(username, noteId) {
-        return await this.repository.addBookmarkedNote(username, noteId);
+        return await this.repository.pushBookmarkedNote(username, noteId);
     }
 }
 
