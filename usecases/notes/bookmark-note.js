@@ -5,7 +5,9 @@ class BookmarkNoteUseCase {
         this.repository = repository;
     }
 
-    async bookmarkNote(username, noteId) {
+    async bookmarkNote(username, noteId, display) {
+        if(!username || !noteId) return display.outputValidationError("username or noteId invalid");
+
         return await this.repository.pushBookmarkedNote(username, noteId);
     }
 }

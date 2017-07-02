@@ -12,9 +12,7 @@ const displayNotes = new DisplayNotesUseCase(new NoteRepository());
 
 // api/users/:username/bookmarks
 router.post('/:noteId', function(req, res, next) {
-    bookmark.bookmarkNote(req.params.username, req.params.noteId)
-        .then(() => res.status(200).send())
-        .catch(e => next(e));
+    bookmark.bookmarkNote(req.params.username, req.params.noteId, new Display(res)).catch(e => next(e));
 });
 
 // api/users/:username/bookmarks
