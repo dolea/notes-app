@@ -2,19 +2,19 @@
 
 const request = require('request-promise');
 const expect = require("chai").expect;
+const uuidv4 = require('uuid/v4');
 
 const Application = require('../web');
 const app = new Application();
 
 describe('executes flow', function () {
-    before(() => app.startApplicationWith({Port: 0, DatabaseUrl: 'mongodb://localhost/test_' + randomInt()}));
+    before(() => app.startApplicationWith({Port: 0, DatabaseUrl: 'mongodb://localhost/test_' + uuidv4()}));
     after(() => app.stopApplication(async db => await db.connection.db.dropDatabase()));
 
     describe('POST /api/notes', function () {
         it('should create a note', async () => {
             const port = app.serverConnection.address().port;
             const createdNote = await postNote(port, {message: "test message", username: "test user"});
-
             expect(createdNote.message).to.be.equal("test message");
             expect(createdNote.author).to.be.equal("test user");
         });
@@ -58,8 +58,4 @@ function postNote(port, body) {
         body: body,
         json: true
     });
-}
-
-function randomInt() {
-    return Math.floor(Math.random());
 }

@@ -2,12 +2,13 @@
 
 const request = require('request-promise');
 const expect = require("chai").expect;
+const uuidv4 = require('uuid/v4');
 
 const Application = require('../web');
 const app = new Application();
 
 describe('executes bookmark flow', function () {
-    before(() => app.startApplicationWith({Port: 0, DatabaseUrl: 'mongodb://localhost/test_' + randomInt()}));
+    before(() => app.startApplicationWith({Port: 0, DatabaseUrl: 'mongodb://localhost/test_' + uuidv4()}));
     after(() => app.stopApplication(async db => await db.connection.db.dropDatabase()));
 
     let createdNote;
@@ -41,7 +42,3 @@ describe('executes bookmark flow', function () {
         });
     });
 });
-
-function randomInt() {
-    return Math.floor(Math.random());
-}
