@@ -8,9 +8,9 @@ class Application {
         this.serverConnection = null;
     }
 
-    async startApplicationWith({Port, DatabaseUrl}) {
-        const databaseConnection = await this.Database.connect(DatabaseUrl);
-        this.serverConnection = await this.Server.listen(Port);
+    async startApplicationWith({port, databaseUrl}) {
+        const databaseConnection = await this.Database.connect(databaseUrl);
+        this.serverConnection = await this.Server.listen(port);
 
         return {DatabaseConnection: databaseConnection, ServerConnection: this.serverConnection};
     }

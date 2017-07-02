@@ -8,7 +8,7 @@ const Application = require('../web');
 const app = new Application();
 
 describe('executes bookmark flow', function () {
-    before(() => app.startApplicationWith({Port: 0, DatabaseUrl: 'mongodb://localhost/test_' + uuidv4()}));
+    before(() => app.startApplicationWith({port: 0, databaseUrl: 'mongodb://localhost/test_' + uuidv4()}));
     after(() => app.stopApplication(async db => await db.connection.db.dropDatabase()));
 
     let createdNote;

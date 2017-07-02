@@ -1,4 +1,4 @@
 'use strict';
 
 const Application = require('./web');
-new Application().startApplicationWith({Port: 3000, DatabaseUrl: 'mongodb://localhost/kubide'});
+new Application().startApplicationWith({port: 3000, databaseUrl: 'mongodb://localhost/kubide'});
