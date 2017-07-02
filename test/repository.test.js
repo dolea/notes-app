@@ -1,8 +1,6 @@
 'use strict';
 
-const mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
-
+const mongoose = require('../config').Database;
 const expect = require("chai").expect;
 
 const BookmarksRepository = require('../repository/mongo/bookmarks-repository');
