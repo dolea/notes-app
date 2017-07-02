@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use('/api', require('./routes/api/index'));
+app.use('/api', require('./routes/api'));
 app.use(function(err, req, res, next) {
     if (res.headersSent) {
         return next(err);
