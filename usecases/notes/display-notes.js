@@ -21,7 +21,7 @@ class DisplayNotesUseCase {
     }
 
     async bookmarkedBy(username, display) {
-        const notes = this.repository.findBookmarkedNotesByCreatorId(username);
+        const notes = await this.repository.findBookmarkedNotesByCreatorId(username);
         display.output(notes);
     }
 }

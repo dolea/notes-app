@@ -7,7 +7,7 @@ class RestDisplay {
     }
 
     output(notes) {
-        this.res.status(200).send(notes);
+        this.res.status(200).json(notes);
     }
 }
 
