@@ -49,4 +49,19 @@ describe('display notes', () => {
         });
 
     });
+
+    describe("validates input on byId",() => {
+        beforeEach(() => outputValidationErrorSpy = sinon.spy(displayMock, "outputValidationError"));
+        afterEach(() => displayMock.outputValidationError.restore());
+
+        it("should reject null message", async () => {
+            displayNotes.byId(null, displayMock);
+            expect(outputValidationErrorSpy.calledOnce).to.be.equal(true);
+        });
+
+        it("should reject undefined message", async () => {
+            displayNotes.byId(undefined, displayMock);
+            expect(outputValidationErrorSpy.calledOnce).to.be.equal(true);
+        });
+    });
 });
