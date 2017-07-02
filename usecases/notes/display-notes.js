@@ -6,6 +6,8 @@ class DisplayNotesUseCase {
     }
 
     async onNewNote(message, username, display) {
+        if(!message || !username) return display.outputValidationError("message or username invalid");
+
         const note = await this.repository.createNewNote(message, username);
         display.output(note);
     };
@@ -16,6 +18,8 @@ class DisplayNotesUseCase {
     }
 
     async byId(noteId, display) {
+        if(!noteId) return display.outputValidationError("noteId invalid");
+
         const note = await this.repository.findNoteById(noteId);
         display.output(note);
     }
