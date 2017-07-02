@@ -80,9 +80,11 @@ describe('all repository tests', () => {
                 expect(notes).to.deep.equal([anyNote, anotherNote]);
             });
         });
+
+        it("should return empty for non existent bookmarked notes", async () => {
+            return new NoteRepository().findBookmarkedNotesByCreatorId("::non existent::").then(notes => {
+                expect(notes).to.deep.equal([]);
+            });
+        });
     });
 });
-
-function cleanUp () {
-    db.connection.db.dropDatabase();
-}

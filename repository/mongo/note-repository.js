@@ -23,6 +23,8 @@ class NoteRepository {
 
     async findBookmarkedNotesByCreatorId(username) {
         const bookmark = await DbBookmark.findOne({'_id': username}).populate('bookmarkedNotes');
+        if(bookmark === null) return [];
+
         return bookmark.bookmarkedNotes.map(mongoNote => newNoteFrom(mongoNote));
     }
 }
