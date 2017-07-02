@@ -16,8 +16,8 @@ class Application {
     }
 
     async stopApplication(cleanUp) {
-        await cleanUp(this.Database);
         await this.serverConnection.close();
+        await cleanUp(this.Database);
         await this.Database.disconnect();
     }
 

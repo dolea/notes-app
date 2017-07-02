@@ -2,14 +2,14 @@
 
 const request = require('request-promise');
 const expect = require("chai").expect;
-const uuidv4 = require('uuid/v4');
+const cleanCollections = require("./collection-cleaner");
 
 const Application = require('../web');
 const app = new Application();
 
 describe('executes flow', function () {
-    before(() => app.startApplicationWith({port: 0, databaseUrl: 'mongodb://localhost/test_' + uuidv4()}));
-    after(() => app.stopApplication(async db => await db.connection.db.dropDatabase()));
+    before(() => app.startApplicationWith({port: 0, databaseUrl: 'mongodb://localhost/test-display-notes-functional'}));
+    after(() => app.stopApplication(cleanCollections));
 
     describe('POST /api/notes', function () {
         it('should create a note', async () => {

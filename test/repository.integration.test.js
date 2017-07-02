@@ -10,7 +10,7 @@ const DbNote = require('../repository/mongo/model/note');
 
 describe('all repository tests', () => {
     let db;
-    before(() => db = mongoose.connect('mongodb://localhost/test'));
+    before(() => db = mongoose.connect('mongodb://localhost/test-repository-integration'));
     after(() => db.disconnect());
 
     describe("BookmarksRepository",() => {
