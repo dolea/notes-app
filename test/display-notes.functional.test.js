@@ -7,8 +7,8 @@ const Application = require('../web');
 const app = new Application();
 
 describe('executes flow', function () {
-    before(() => app.startApplicationWith({Port: 0, DatabaseUrl: 'mongodb://localhost/kubide'}));
-    after(() => app.stopApplication());
+    before(() => app.startApplicationWith({Port: 0, DatabaseUrl: 'mongodb://localhost/test_' + randomInt()}));
+    after(() => app.stopApplication(async db => await db.connection.db.dropDatabase()));
 
     describe('POST /api/notes', function () {
         it('should create a note', async () => {
@@ -23,7 +23,7 @@ describe('executes flow', function () {
     describe('GET /api/notes/:noteId', function () {
         it('should recover a created note', async () => {
             const port = app.serverConnection.address().port;
-            const createdNote = await postNote(port, {message: "test message", username: "test user"});
+            const createdNote = await postNote(port, {message: "another test message", username: "another test user"});
 
             const recoveredNote = await request({
                 uri: 'http://localhost:' + port + '/api/notes/' + createdNote.noteId,
@@ -42,8 +42,11 @@ describe('executes flow', function () {
                 json: true
             });
 
-            //TODO: fix weak assertion
-            expect(recoveredNotes).to.not.be.empty;
+            expect(recoveredNotes[0].message).equal("test message");
+            expect(recoveredNotes[0].author).equal("test user");
+
+            expect(recoveredNotes[1].message).equal("another test message");
+            expect(recoveredNotes[1].author).equal("another test user");
         });
     });
 });
@@ -55,4 +58,8 @@ function postNote(port, body) {
         body: body,
         json: true
     });
+}
+
+function randomInt() {
+    return Math.floor(Math.random());
 }

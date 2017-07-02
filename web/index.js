@@ -15,7 +15,8 @@ class Application {
         return {DatabaseConnection: databaseConnection, ServerConnection: this.serverConnection};
     }
 
-    async stopApplication() {
+    async stopApplication(cleanUp) {
+        await cleanUp(this.Database);
         await this.serverConnection.close();
         await this.Database.disconnect();
     }
