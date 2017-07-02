@@ -15,21 +15,8 @@ describe('all repository tests', () => {
 
     describe("BookmarksRepository",() => {
 
-        describe("User has no bookmarks",() => {
-            before(() => DbBookmark.remove({}));
-            after(() => DbBookmark.remove({}));
-            it("should store a bookmark", async () => {
-                const anyNoteId = mongoose.Types.ObjectId();
-                await new BookmarksRepository().pushBookmarkedNote("::any user::", anyNoteId);
-
-                return DbBookmark.findOne().then(bookmark => {
-                    expect(bookmark._id).to.equal("::any user::");
-                    expect(bookmark.bookmarkedNotes).to.deep.equal([anyNoteId])
-                });
-            });
-        });
-
         describe("User bookmarks two notes",() => {
+            before(() => DbBookmark.remove({}));
             after(() => DbBookmark.remove({}));
             it("should add bookmarks to user", async () => {
                 const anyNoteId = mongoose.Types.ObjectId();
